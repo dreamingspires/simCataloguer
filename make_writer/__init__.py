@@ -29,16 +29,16 @@ class Writer:
 
     def train_model(
             self, 
+            file_name: str, 
+            run_name: str,
             checkpoint_dir: str = 'checkpoint',  
-            file_name = "obama_sotu.txt", 
-            run_name: str = 'simObama'
         ):
         checkpoint_path = get_rel_path(checkpoint_dir, self.default_dir)
 
         train_path = get_rel_path(file_name, self.default_dir)
         tf.compat.v1.reset_default_graph()
-
-        self.sess = gpt2.start_tf_sess()
+        if self.sess is None:
+            self.sess = gpt2.start_tf_sess()
 
 
         gpt2.finetune(self.sess,
@@ -54,8 +54,24 @@ class Writer:
             model_dir = str(self.model_path)
         )
 
-    def generate(self, run_name: str = 'simObama'):
-        return gpt2.generate(self.sess, run_name=run_name)
+    def generate(
+        self, 
+        run_name: str, 
+        length: int = 500, 
+        temperature: float = 0.8, 
+        n_samples: int = 1, 
+        batch_size: int = 1
+    ):
+        # Choose or refuse one text at a time - 300 to 500 words
 
-
+        if self.sess is None:
+            self.sess = gpt2.start_tf_sess()
+        return gpt2.generate(
+            self.sess, 
+            run_name=run_name, 
+            length=length, 
+            temperature=temperature,
+            nsamples=n_samples, 
+            batch_size=batch_size
+        )
 
