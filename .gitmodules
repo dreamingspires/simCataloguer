@@ -1,0 +1,3 @@
+[submodule "modules/pixray"]
+	path = modules/pixray
+	url = git@github.com:dreamingspires/pixray.git

@@ -5,8 +5,9 @@ description = ""
 authors = ["mark-todd <markpeter.todd@hotmail.co.uk>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9, <3.11"
 gpt-2-simple = "^0.8.1"
+pixray-module = {path = "modules/pixray"}
 
 [tool.poetry.dev-dependencies]
 
