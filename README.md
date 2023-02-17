@@ -26,3 +26,19 @@ https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#cudnn-packag
 ## Step 3
 `sudo apt-get -y install cuda`
 
+# Windows
+
+`git clone --recursive git@github.com:dreamingspires/MAKE-Writer.git`
+
+get pip
+
+get poetry
+
+`poetry install` (You may need to run this more than once, it fails to parallel process on occasion)
+
+`poetry run pip uninstall -y torch torchvision`
+
+`poetry run pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu117`
+
+Same for tensorflow
+poetry run pip install tensorflow==2.10

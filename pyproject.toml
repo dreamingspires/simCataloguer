@@ -8,6 +8,7 @@ authors = ["mark-todd <markpeter.todd@hotmail.co.uk>"]
 python = ">=3.9, <3.11"
 gpt-2-simple = "^0.8.1"
 pixray-module = {path = "modules/pixray"}
+tensorflow = "2.10"
 
 [tool.poetry.dev-dependencies]
 
