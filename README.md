@@ -24,6 +24,4 @@ get poetry
 
 `poetry install` (You may need to run this more than once, it fails to parallel process on occasion)
 
-`poetry run pip uninstall -y torch torchvision`
-
-`poetry run pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu117`
+`poetry run pip install --extra-index-url https://download.pytorch.org/whl/cu117 --no-deps --force-reinstall torch torchvision`
