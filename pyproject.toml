@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "make-writer"
+name = "simCataloguer"
 version = "0.1.0"
 description = ""
 authors = ["mark-todd <markpeter.todd@hotmail.co.uk>"]
