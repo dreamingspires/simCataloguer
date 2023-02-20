@@ -1,3 +1,4 @@
+from typing import Optional
 import gpt_2_simple as gpt2
 import sys
 from pathlib import Path, PurePath
@@ -11,6 +12,25 @@ def get_rel_path(directory: str | Path, default_dir: Path) -> Path:
         return Path(directory)
     else:
         return default_dir.parent / Path(directory)
+
+def generate(
+    session, 
+    run_name: str, 
+    length: int = 500, 
+    temperature: float = 0.8, 
+    n_samples: int = 1, 
+    batch_size: int = 1
+) -> list[str]:
+    return gpt2.generate(
+        session, 
+        run_name=run_name, 
+        length=length, 
+        temperature=temperature,
+        nsamples=n_samples, 
+        batch_size=batch_size,
+        return_as_list = True
+    )
+
 
 class Writer:
     def __init__(
@@ -77,28 +97,6 @@ class Writer:
         else:
             gpt2.load_gpt2(self.sess, run_name = run_name, checkpoint_dir= str(checkpoint_path)  )
 
-
-    def generate(
-        self, 
-        run_name: str, 
-        length: int = 500, 
-        temperature: float = 0.8, 
-        n_samples: int = 1, 
-        batch_size: int = 1
-    ) -> list[str]:
-        # Choose or refuse one text at a time - 300 to 500 words
-
-        return gpt2.generate(
-            self.sess, 
-            run_name=run_name, 
-            length=length, 
-            temperature=temperature,
-            nsamples=n_samples, 
-            batch_size=batch_size,
-            return_as_list = True
-        )
-
-
     def make_pixray(
         self,
         prompt: str,
@@ -125,6 +123,7 @@ class Writer:
         input_file: str | Path, 
         run_name: str, 
         output: str | Path,
+        choose_or_refuse: bool = True,
         checkpoint_dir: str | Path = 'checkpoint',
         text_length: int = 500, 
         text_temperature: float = 0.8, 
@@ -139,8 +138,29 @@ class Writer:
                 checkpoint_dir=checkpoint_dir,
                 always_retrain = always_retrain
             )
-        generated_texts = self.generate(
-            run_name=run_name, length=text_length, temperature=text_temperature
-        )
-        self.make_pixray(generated_texts[0], output, pixray_quality, pixray_num_cuts)
+        if choose_or_refuse:
+            output_text: Optional[str] = None
+            while output_text is None:
+                generated_texts = generate(
+                    self.sess, run_name=run_name, length=text_length, temperature=text_temperature
+                )
+                print()
+                print(generated_texts[0])
+                print()
+                while True:
+                    response = input('Is this text acceptable? (y/n):')
+                    if response.lower() == 'y':
+                        output_text = generated_texts[0]
+                        break
+                    elif response.lower() == 'n':
+                        break
+                    else:
+                        print('invalid_response')
+
+        else:
+            generated_texts = generate(
+                self.sess, run_name=run_name, length=text_length, temperature=text_temperature
+            )
+            output_text = generated_texts[0]
+        self.make_pixray(output_text, output, pixray_quality, pixray_num_cuts)
 

@@ -2,3 +2,6 @@ __pycache__/
 current_models
 current_models_backup
 checkpoint
+samples
+outputs
+starting_image.png
