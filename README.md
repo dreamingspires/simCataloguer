@@ -5,6 +5,8 @@
 ## Clone repo
 `git clone --recursive git@github.com:dreamingspires/simCataloguer.git`
 
+You may need to install zlib, and graphics driver
+
 ## Get NVIDIA GPU Computing Toolkit, CUDA
 https://developer.nvidia.com/cuda-11-7-0-download-archive
 
@@ -13,6 +15,9 @@ https://developer.nvidia.com/rdp/cudnn-download
 
 ### Install cuDNN
 https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html
+
+## Install python 3.9
+https://www.python.org/downloads/
 
 ## Install pip
 https://pip.pypa.io/en/stable/installation/
