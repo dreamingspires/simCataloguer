@@ -39,3 +39,9 @@ https://python-poetry.org/docs/#installation
 ## Windows specific
 
 `poetry run pip install --extra-index-url https://download.pytorch.org/whl/cu117 --no-deps --force-reinstall torch torchvision`
+
+# Run test
+
+Go into the examples folder and run:
+
+`poetry run python test_writer.py`
