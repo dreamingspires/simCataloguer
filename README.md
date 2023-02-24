@@ -17,7 +17,7 @@ https://developer.nvidia.com/rdp/cudnn-download
 https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html
 
 ## Install python 3.9
-https://www.python.org/downloads/
+https://www.python.org/downloads/release/python-3913/
 
 ## Install pip
 https://pip.pypa.io/en/stable/installation/
