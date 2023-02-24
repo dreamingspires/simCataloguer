@@ -19,11 +19,19 @@ https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html
 ## Install python 3.9
 https://www.python.org/downloads/release/python-3913/
 
-## Install pip
+## Install pip (may not be required, check with pip --version)
 https://pip.pypa.io/en/stable/installation/
 
 ## Install Poetry
 https://python-poetry.org/docs/#installation
+
+### Add poetry to path using on screen instructions
+
+### Reboot shell
+
+### Check with poetry --version
+
+`poetry config virtualenvs.in-project true`
 
 ## Install deps with poetry
 `poetry install` (You may need to run this more than once, it fails to parallel process on occasion)
