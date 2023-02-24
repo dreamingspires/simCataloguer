@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import Optional, Union
 import gpt_2_simple as gpt2
 import sys
 from pathlib import Path, PurePath
 import tensorflow as tf
 import pixray_module
 
-def get_rel_path(directory: str | Path, default_dir: Path) -> Path:
+def get_rel_path(directory: Union[str, Path], default_dir: Path) -> Path:
     if isinstance(directory, Path):
         return directory
     if PurePath(directory).is_absolute():
@@ -35,7 +35,7 @@ def generate(
 class Writer:
     def __init__(
         self, 
-        model_dir: str | Path = 'current_models', 
+        model_dir: Union[str, Path] = 'current_models', 
         model_name='124M'
     ) -> None:
         self.default_dir = Path.cwd() / sys.argv[0]
@@ -58,7 +58,7 @@ class Writer:
 
     def _train_model(
             self, 
-            file_name: str | Path, 
+            file_name: Union[str, Path], 
             run_name: str,
             checkpoint_path: Path,  
         ):
@@ -81,9 +81,9 @@ class Writer:
 
     def train_model(
         self, 
-        file_name: str | Path, 
+        file_name: Union[str, Path], 
         run_name: str,
-        checkpoint_dir: str | Path = 'checkpoint',  
+        checkpoint_dir: Union[str, Path] = 'checkpoint',  
         always_retrain: bool = False
     ):
         if not isinstance(checkpoint_dir, Path):
@@ -100,7 +100,7 @@ class Writer:
     def make_pixray(
         self,
         prompt: str,
-        output: str | Path,
+        output: Union[str, Path],
         quality: str = "better",
         num_cuts: int = 10
     ):
@@ -120,11 +120,11 @@ class Writer:
 
     def __call__(
         self,
-        input_file: str | Path, 
+        input_file: Union[str, Path], 
         run_name: str, 
-        output: str | Path,
+        output: Union[str, Path],
         choose_or_refuse: bool = True,
-        checkpoint_dir: str | Path = 'checkpoint',
+        checkpoint_dir: Union[str, Path] = 'checkpoint',
         text_length: int = 500, 
         text_temperature: float = 0.8, 
         always_retrain: bool = False,
