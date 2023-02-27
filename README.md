@@ -1,5 +1,9 @@
 # simCataloguer
 
+# System Requirements
+
+Please note that you may require a large amount of VRAM to use this library. Data we have gathered so far: 8Gb is not enough but 24Gb is sufficient.
+
 # Installation
 
 ## Clone repo
@@ -45,3 +49,15 @@ https://python-poetry.org/docs/#installation
 Go into the examples folder and run:
 
 `poetry run python test_writer.py`
+
+# Credits
+
+Developed by Dreaming Spires Software Development Ltd
+
+For more details of the type of projects we develop, please contact:
+
+contact@dreamingspires.dev
+
+or visit:
+
+https://dreamingspires.dev/
