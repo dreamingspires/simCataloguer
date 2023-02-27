@@ -2,7 +2,7 @@ from simCataloguer import Writer
 
 writer = Writer()
 writer(
-    'obama_sotu.txt',
-    'simObama',
+    'MDG.txt',
+    'simMDG',
     'outputs/hairout',
 )
